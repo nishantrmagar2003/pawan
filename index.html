@@ -3,10 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pawan Regami Magar - Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ff3333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #000);
+            text-align: center;
+            padding: 3rem 1rem;
+            border-bottom: 3px solid #ff3333;
+            position: relative;
+            animation: glitch 1.5s linear infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 51, 51, 0.1) 2px,
+                rgba(255, 51, 51, 0.1) 4px
+            );
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-family: 'VT323', monospace;
+            font-size: 4rem;
+            text-shadow: 0 0 15px #ff3333, 0 0 30px #ff3333;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            color: #ff6666;
+            text-transform: uppercase;
+        }
+
+        nav {
+            background-color: #111;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid #ff3333;
+            box-shadow: 0 0 10px #ff3333;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 15px #ff3333;
+            transform: scale(1.1);
+            color: #ff6666;
+        }
+
+        section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-family: 'VT323', monospace;
+            font-size: 2.8rem;
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px #ff3333;
+            border-left: 6px solid #ff3333;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        section h2::before {
+            content: ">>>";
+            animation: blink 0.8s step-end infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .profile, .education, .experience, .certifications, .skills, .projects, .contact {
+            background-color: #1a1a1a;
+            border: 2px solid #ff3333;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile p {
+            font-size: 1.1rem;
+            color: #ff9999;
+        }
+
+        .education-item, .experience-item, .project-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #222;
+            border: 1px solid #ff3333;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .education-item:hover, .experience-item:hover, .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #ff3333;
+        }
+
+        .education-item h3, .experience-item h3, .project-item h3 {
+            font-family: 'VT323', monospace;
+            font-size: 1.7rem;
+            color: #ff3333;
+            text-shadow: 0 0 8px #ff3333;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p, .experience-item p, .project-item p {
+            color: #ff9999;
+        }
+
+        .certifications ul, .skills ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .certifications li, .skills li {
+            background-color: #2a2a2a;
+            color: #ff3333;
+            padding: 0.8rem;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1rem;
+            border: 1px solid #ff3333;
+            transition: all 0.3s ease;
+        }
+
+        .certifications li:hover, .skills li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #ff3333;
+            background-color: #3a3a3a;
+        }
+
+        .skills li.soft-skill {
+            background-color: #3a3a3a;
+            border-color: #ff6666;
+        }
+
+        .project-item ul {
+            list-style: none;
+            margin-left: 1.5rem;
+            color: #ff9999;
+        }
+
+        .project-item ul li::before {
+            content: ">> ";
+            color: #ff3333;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #ff9999;
+        }
+
+        .contact a {
+            color: #ff3333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact a:hover {
+            text-shadow: 0 0 15px #ff3333;
+            color: #ff6666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #111;
+            color: #ff6666;
+            border-top: 2px solid #ff3333;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            text-shadow: 0 0 5px #ff3333;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2.2rem;
+            }
+
+            .certifications ul, .skills ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .education-item, .experience-item, .project-item {
+                padding: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>hello my name is pawan regami magar </h1>
-    <h1>ooo</h1>
+    <header>
+        <h1>Pawan Regami Magar</h1>
+        <p>Elite Ethical Hacker & Cybersecurity Specialist</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="profile" class="profile">
+        <h2>Profile</h2>
+        <p>Driven to dominate the cybersecurity landscape with expertise in ethical hacking, secure network architecture, and advanced system defense. Mastered vulnerability exploitation across networks, cloud environments, and IoT devices through intense hands-on labs and simulations. Committed to outpacing cyber threats with cutting-edge skills in cloud and application security, delivering unrelenting protection for innovative organizations.</p>
+    </section>
+
+    <section id="education" class="education">
+        <h2>Education</h2>
+        <div class="education-item">
+            <h3>BSc (Hons) Computer Networking and IT Security</h3>
+            <p>Islington College, Kathmandu<br>Expected Graduation: 2026</p>
+        </div>
+        <div class="education-item">
+            <h3>Web Application Development Course</h3>
+            <p>DanpheLink Academy, Kathmandu</p>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <h3>Computer Instructor — Indian Embassy, Kathmandu</h3>
+            <p>
+                - Trained operatives in MS Office, Internet fundamentals, and system navigation.<br>
+                - Delivered elite training in HTML, CSS, and JavaScript for building covert web interfaces.
+            </p>
+        </div>
+        <div class="experience-item">
+            <h3>Practical Cybersecurity Operations</h3>
+            <p>
+                - Executed advanced vulnerability testing for XSS, SQL Injection, CSRF, IDOR, and Authentication Bypass.<br>
+                - Conquered over 20+ TryHackMe rooms, including SQhell, Pickle Rick, CTF Collection Vol.2, and Advent of Cyber 2024.<br>
+                - Honed web security skills through Burp Suite Web Academy labs.
+            </p>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            <li>Cisco: Introduction to Cybersecurity</li>
+            <li>Cisco: Introduction to Networking</li>
+            <li>TryHackMe: Advent of Cyber 2024</li>
+            <li>DanpheLink Academy: Web Application Penetration Testing</li>
+        </ul>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>Burp Suite</li>
+            <li>SQLMap</li>
+            <li>Nmap</li>
+            <li>Dirsearch</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>JavaScript</li>
+            <li>MySQL</li>
+            <li>Cisco Packet Tracer</li>
+            <li class="soft-skill">Leadership</li>
+            <li class="soft-skill">Teamwork</li>
+            <li class="soft-skill">Problem Solving</li>
+            <li class="soft-skill">Communication</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="project-item">
+            <h3>SQL Injection Lab</h3>
+            <p>Breached vulnerable web apps with SQL injection attacks to expose database weaknesses. Deployed secure coding and input sanitization to lock down vulnerabilities.</p>
+        </div>
+        <div class="project-item">
+            <h3>Cross-Site Scripting (XSS) Lab</h3>
+            <p>Unleashed Reflected and Stored XSS attacks to exploit browser vulnerabilities. Mastered encoding and validation techniques to neutralize XSS threats.</p>
+        </div>
+        <div class="project-item">
+            <h3>Small Office Networking Simulation</h3>
+            <p>Engineered a fortified office network using Cisco Packet Tracer, with router/switch configs, IP addressing, VLANs, and ironclad security protocols.</p>
+        </div>
+        <div class="project-item">
+            <h3>Land Rental System (Python)</h3>
+            <p>Developed a secure Python-based rental management system with database integration, supporting user registration, property listings, and real-time tracking.</p>
+        </div>
+        <div class="project-item">
+            <h3>Faculty Management System (Java)</h3>
+            <p>Crafted a Java desktop app for faculty record management, with seamless CRUD operations and a locked-down, user-friendly interface.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <p>Phone: <a href="tel:+9779812452217">+977 9812452217</a></p>
+        <p>Email: <a href="mailto:nishantrmagar2@gmail.com">nishantrmagar2@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/pawan-regami-magar">linkedin.com/in/pawan-regami-magar</a></p>
+        <p>Location: Thamel, Kathmandu</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Pawan Regami Magar. Access Denied Without Authorization.</p>
+    </footer>
 </body>
 </html>
